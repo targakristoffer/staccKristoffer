@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<h1> testings </h1>
+<style>
+    .container {
+        width: 50%;
+        height: 50%;
+    }
+</style>
+<body>
+
+    <button id="renderBtn">
+        Render
+    </button>
+    <div class="container">
+        <canvas id="testingsChart"></canvas>
+    </div>
+
+</body>
+
+
+<!--<script>
+console.log("sjekkings");
+fetch('https://visningsrom.stacc.com/dd_server_laaneberegning/rest/laaneberegning/v1/nedbetalingsplan?', {
+ mode: 'no-cors',
+  method: 'POST',
+  headers: {
+    "content-type": 'application/json',
+  },
+},
+)
+.then(response => {
+  if (response.ok) {
+    response.json().then(json => {
+      console.log(json);
+    });
+  }
+});
+
+</script> -->
+
+
+<script>
+const url = 'https://visningsrom.stacc.com/dd_server_laaneberegning/rest/laaneberegning/v1/nedbetalingsplan?';
+const data = {
+  "laanebelop": 2000000,
+  "nominellRente": 3,
+  "terminGebyr":30,
+  "utlopsDato":"2045-01-01",
+  "saldoDato":"2020-01-01",
+  "datoForsteInnbetaling":"2020-02-01",
+  "ukjentVerdi":"TERMINBELOP"
+
+};
+  const options={
+    headers:{
+      //crossDomain : true,
+      "content-type": "application/json"},
+      body: "data",
+      method:"POST",
+      //mode: 'no-cors',
+    };
+  fetch (url, options)
+//.then(response => response.json())
+ //.then(json => {
+  // console.log('parsed json', json)
+ //})
+.then(data=>{return data.json()})
+.then(res=>{console.log(res)})
+.then(error=>console.log(error))
+
+</script>
+
+<!--
+  renderChart(data, labels) {
+    var ctx = document.getElementById("testingsChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+      data: {
+            labels: labels,
+            datasets: [{
+                label: 'Test',
+                data: data,
+            }]
+        },
+    });
+}
+$("#renderBtn").click(
+    function () {
+      data = [0,1]
+      label = ["hei", "heie"]
+      renderChart(data);
+    }
+)
+</script>-->
+</html>
